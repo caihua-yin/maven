@@ -2,6 +2,7 @@ Hello world for Apache Maven
 ============================
 
 #### Maven managed project structure
+```
 ${basedir}: for pom.xml and all sub-directories
     |- src/main/java/: source code of the project
     |- src/main/resources/: resources of the project, like property file
@@ -9,6 +10,7 @@ ${basedir}: for pom.xml and all sub-directories
     |- src/test/resources/: resources of the testing
     |- target/: jar file after build
     |- target/class/: class file during build
+```
 
 Take this helloworld project for example:
 ```
