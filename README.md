@@ -1,51 +1,20 @@
-Hello world for Apache Maven
-============================
+Leader election based on Zookeeper
+==================================
 
-#### Maven managed project structure
-```
-${basedir}: for pom.xml and all sub-directories
-    |- src/main/java/: source code of the project
-    |- src/main/resources/: resources of the project, like property file
-    |- src/test/java/: testing code of the project, like JUnit code
-    |- src/test/resources/: resources of the testing
-    |- target/: jar file after build
-    |- target/class/: class file during build
-```
+# Build package
+$ mvn package
 
-Take this helloworld project for example:
-```
-maven/helloworld$ tree
-.
-|-- pom.xml
-`-- src
-    |-- main
-    |   `-- java
-    |       `-- com
-    |           `-- caihua
-    |               `-- helloworld
-    |                   `-- App.java
-    `-- test
-        `-- java
-            `-- com
-                `-- caihua
-                    `-- helloworld
-                        `-- AppTest.java
-```
+# Start one process
+$ java -jar target/leadelection-0.0.1-SNAPSHOT-jar-with-dependencies.jar
+Fri Dec 08 23:04:10 CST 2017: I am slave, I am standby...
+Fri Dec 08 23:04:20 CST 2017: Start finished.
+Fri Dec 08 23:05:44 CST 2017: I am leader, I am doing my job...
+Fri Dec 08 23:05:45 CST 2017: I am leader, I am doing my job...
+Fri Dec 08 23:05:46 CST 2017: I am leader, I am doing my job...
 
-#### Install Maven
-http://maven.apache.org/download.cgi
+# Start another process
+$ java -jar target/leadelection-0.0.1-SNAPSHOT-jar-with-dependencies.jar
+Fri Dec 08 23:04:10 CST 2017: I am slave, I am standby...
+Fri Dec 08 23:04:20 CST 2017: Start finished.
 
-#### Check maven version
-mvn -v
-
-#### Create project
-mvn archetype:generate -DgroupId=com.caihua.helloworld -DartifactId=helloworld -Dpackage=com.caihua.helloworld -Dversion=1.0
-
-#### Build
-mvn package
-
-#### Run
-java -cp target/helloworld-1.0.jar com.caihua.helloworld.App
-
-#### Reference
-http://www.oracle.com/technetwork/cn/community/java/apache-maven-getting-started-1-406235-zhs.html
+# Stop first process, second process will take leadership in about 40s
